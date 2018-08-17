@@ -60,6 +60,10 @@ public:
   void FindShortSuccessor(std::string *key) const override {
     rocksdb::BytewiseComparator()->FindShortSuccessor(key);
   }
+
+  bool CanKeysWithDifferentByteContentsBeEqual() const override {
+    return false;
+  }
 };
 
 class Rdb_rev_comparator : public rocksdb::Comparator {
@@ -79,6 +83,10 @@ public:
   }
   void FindShortSuccessor(std::string *key) const override {
     rocksdb::ReverseBytewiseComparator()->FindShortSuccessor(key);
+  }
+
+  bool CanKeysWithDifferentByteContentsBeEqual() const override {
+    return false;
   }
 };
 
